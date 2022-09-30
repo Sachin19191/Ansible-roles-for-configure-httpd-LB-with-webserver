@@ -1,0 +1,10 @@
+- hosts: backend_WS
+  tasks: 
+  - include_role:
+        name: mywebserver
+- hosts: frontend_LB
+  tasks: 
+  - include_role:
+        name: myloadbalancer 
+   
+    

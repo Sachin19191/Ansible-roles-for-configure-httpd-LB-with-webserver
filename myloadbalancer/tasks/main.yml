@@ -1,0 +1,19 @@
+# tasks file for myloadbalancer
+- name: Installing Haproxy-loadbalancer
+  package: 
+              name: haproxy
+              state: present
+- name: uploading configuration file
+  template:
+              src: haproxy.cfg
+              dest: /etc/haproxy/haproxy.cfg
+  register: x
+- name: starting haproxy
+  service: 
+              name: haproxy
+              state: started
+- name: restarting haproxy service if change configuration file
+  service:
+              name: haproxy
+              state: restarted
+  when: x.changed

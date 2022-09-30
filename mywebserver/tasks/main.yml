@@ -1,0 +1,14 @@
+# tasks file for mywebserver
+- name: Installing webserver
+  package:
+             name: httpd, php
+             state: present
+- name: copy webpage to the webserver
+  copy:
+             src: index.php
+             dest: /var/www/html/index.php
+ register: x
+- name: starting httpd services
+  service:
+             name: httpd
+             state: started
